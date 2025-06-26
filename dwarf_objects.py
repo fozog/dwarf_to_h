@@ -39,10 +39,10 @@ class CompileUnitNode(DwarfNode):
 class EnumerationTypeNode(DwarfNode):
     def to_string(self, level=0):
         indent = '    ' * level
-        s = f"{indent}enum {self.name or ''} {{\n"
+        s = f"{indent}typedef enum {self.name or ''} {{\n"
         for child in self.children:
             s += child.to_string(level + 1)
-        s +=  f"{indent}}};\n"
+        s +=  f"{indent}}} {self.name or ''};\n"
         return s
 
 class EnumeratorNode(DwarfNode):
